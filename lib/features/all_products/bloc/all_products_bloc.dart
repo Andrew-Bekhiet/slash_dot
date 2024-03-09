@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:rxdart/transformers.dart';
 import 'package:slash_dot/slash_dot.dart';
 
 import './all_products_event.dart';
@@ -10,20 +11,26 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
 
   AllProductsBloc({
     required ProductsService productService,
-    this.loadLimit = 50,
+    this.loadLimit = 5,
   })  : _productService = productService,
-        super(const AllProductsLoading()) {
-    on<AllProductsLoadMore>(_onLoadMore);
+        super(const AllProductsInitial()) {
+    on<AllProductsLoadMore>(
+      _onLoadMore,
+      transformer: (events, mapper) =>
+          events.where((_) => state is! AllProductsLoading).switchMap(mapper),
+    );
   }
 
   Future<void> _onLoadMore(
     AllProductsLoadMore event,
     Emitter<AllProductsState> emit,
   ) async {
-    emit(const AllProductsLoading());
-
     final AllProductsState lastState = state;
     final int lastPage = lastState is AllProductsLoaded ? lastState.page : 0;
+    final List<Product> lastProducts =
+        lastState is AllProductsLoaded ? lastState.products : [];
+
+    emit(const AllProductsLoading());
 
     try {
       final (List<Product> products, bool hasMore) =
@@ -34,7 +41,7 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
 
       emit(
         AllProductsLoaded(
-          products: products,
+          products: [...lastProducts, ...products],
           page: lastPage + 1,
           hasMore: hasMore,
         ),

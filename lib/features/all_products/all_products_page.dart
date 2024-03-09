@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:slash_dot/slash_dot.dart';
 
 import './bloc/all_products_bloc.dart';
@@ -42,36 +43,67 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
     bloc = ref.read(allProductsBlocProvider);
   }
 
+  void _onRetry(AllProductsEvent lastEvent) {
+    bloc.add(lastEvent);
+  }
+
+  void _onLoadMore() {
+    bloc.add(const AllProductsLoadMore());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Slash.'),
       ),
-      body: StreamBuilder<AllProductsState>(
-        stream: bloc.stream,
+      body: StreamBuilder<(AllProductsLoaded?, AllProductsState)>(
+        stream: Rx.combineLatest2(
+          bloc.stream.whereType<AllProductsLoaded?>().startWith(null),
+          bloc.stream,
+          (previousLoadedState, state) => (previousLoadedState, state),
+        ),
         builder: (context, snapshot) {
-          if (snapshot.hasError) return _AllProductsError(snapshot.error!);
-
-          if (!snapshot.hasData || snapshot.data is AllProductsLoading) {
-            return const _AllProductsLoading();
-          }
-
-          final AllProductsState? data = snapshot.data;
-
-          if (data is! AllProductsLoaded) {
-            return const _AllProductsError(
-              AllProductsError(error: 'Unknown state'),
+          if (snapshot.hasError) {
+            return _AllProductsError(
+              snapshot.error!,
+              onRetry: snapshot.error is AllProductsError
+                  ? () =>
+                      _onRetry((snapshot.error! as AllProductsError).lastEvent!)
+                  : null,
             );
           }
 
-          final List<Product> products = data.products;
+          if (!snapshot.hasData) {
+            return const _AllProductsLoading();
+          }
+
+          final (previousLoadedState, state) = snapshot.data!;
+
+          if (previousLoadedState == null) {
+            return const _AllProductsLoading();
+          }
+
+          final List<Product> products = state is AllProductsLoaded
+              ? state.products
+              : previousLoadedState.products;
 
           if (products.isEmpty) {
             return const _AllProductsEmpty();
           }
 
-          return _AllProductsContent(products);
+          return Column(
+            children: [
+              Expanded(
+                child: _AllProductsContent(
+                  products,
+                  onLoadMoreRequested: _onLoadMore,
+                ),
+              ),
+              if (state is AllProductsLoading)
+                const Center(child: CircularProgressIndicator()),
+            ],
+          );
         },
       ),
     );
@@ -97,38 +129,52 @@ class _AllProductsEmpty extends StatelessWidget {
 }
 
 class _AllProductsContent extends StatelessWidget {
-  const _AllProductsContent(this.products);
-
   final List<Product> products;
+  final VoidCallback onLoadMoreRequested;
+
+  const _AllProductsContent(this.products, {required this.onLoadMoreRequested});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-        ),
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          final Product product = products[index];
+      child: NotificationListener<ScrollNotification>(
+        onNotification: _onScroll,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+          ),
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            final Product product = products[index];
 
-          return ProductWidget(product: product);
-        },
+            return ProductWidget(product: product);
+          },
+        ),
       ),
     );
   }
+
+  bool _onScroll(ScrollNotification notification) {
+    final metrics = notification.metrics;
+    if (metrics.pixels >= metrics.maxScrollExtent - 100) {
+      onLoadMoreRequested();
+    }
+
+    return false;
+  }
 }
 
-class _AllProductsError extends ConsumerWidget {
+class _AllProductsError extends StatelessWidget {
   final Object error;
+  final VoidCallback? onRetry;
 
-  const _AllProductsError(this.error);
+  const _AllProductsError(this.error, {this.onRetry});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final Object error = this.error;
 
     if (error is! AllProductsError) {
@@ -141,11 +187,9 @@ class _AllProductsError extends ConsumerWidget {
         children: [
           const Text('Oops! Something went wrong'),
           if (kDebugMode) Text(error.message ?? ''),
-          if (error.lastEvent != null)
+          if (onRetry != null)
             FilledButton.tonal(
-              onPressed: () {
-                ref.read(allProductsBlocProvider).add(error.lastEvent!);
-              },
+              onPressed: onRetry,
               child: const Text('Try again'),
             ),
         ],

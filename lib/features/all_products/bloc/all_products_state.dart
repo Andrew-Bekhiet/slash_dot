@@ -7,6 +7,10 @@ sealed class AllProductsState {
   const AllProductsState();
 }
 
+class AllProductsInitial extends AllProductsState {
+  const AllProductsInitial();
+}
+
 class AllProductsLoading extends AllProductsState {
   const AllProductsLoading();
 }
