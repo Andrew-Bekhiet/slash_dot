@@ -6,19 +6,17 @@ part 'brand.g.dart';
 @freezed
 class Brand with _$Brand {
   const factory Brand({
-    required String id,
-    @JsonKey(name: 'brand_type') required String brandType,
-    @JsonKey(name: 'brand_name') required String brandName,
-    @JsonKey(name: 'brand_facebook_page_link')
-    required String brandFacebookPageLink,
-    @JsonKey(name: 'brand_instagram_page_link')
-    required String brandInstagramPageLink,
-    @JsonKey(name: 'brand_website_link') required String? brandWebsiteLink,
-    @JsonKey(name: 'brand_mobile_number') required String brandMobileNumber,
-    @JsonKey(name: 'brand_email_address') required String brandEmailAddress,
-    @JsonKey(name: 'tax_id_number') required String? taxIdNumber,
-    @JsonKey(name: 'brand_description') required String brandDescription,
-    @JsonKey(name: 'brand_logo_image_path') required String brandLogoImagePath,
+    required int id,
+    required String brandType,
+    required String brandName,
+    required String? brandFacebookPageLink,
+    required String? brandInstagramPageLink,
+    required String? brandWebsiteLink,
+    required String brandMobileNumber,
+    required String brandEmailAddress,
+    required String? taxIdNumber,
+    required String brandDescription,
+    required String brandLogoImagePath,
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, Object?> json) => _$BrandFromJson(json);

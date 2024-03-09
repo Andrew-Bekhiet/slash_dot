@@ -13,11 +13,13 @@ class AllProductsLoading extends AllProductsState {
 
 class AllProductsLoaded extends AllProductsState with EquatableMixin {
   final List<Product> products;
-  final int? page;
+  final int page;
+  final bool hasMore;
 
   const AllProductsLoaded({
     required this.products,
-    this.page,
+    required this.page,
+    this.hasMore = true,
   });
 
   @override
@@ -27,11 +29,11 @@ class AllProductsLoaded extends AllProductsState with EquatableMixin {
 class AllProductsError extends AllProductsState with EquatableMixin {
   final Object error;
   final String? message;
-  final AllProductsEvent lastEvent;
+  final AllProductsEvent? lastEvent;
 
   const AllProductsError({
     required this.error,
-    required this.lastEvent,
+    this.lastEvent,
     this.message,
   });
 

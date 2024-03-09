@@ -20,26 +20,16 @@ Brand _$BrandFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Brand {
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_type')
+  int get id => throw _privateConstructorUsedError;
   String get brandType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_name')
   String get brandName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_facebook_page_link')
-  String get brandFacebookPageLink => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_instagram_page_link')
-  String get brandInstagramPageLink => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_website_link')
+  String? get brandFacebookPageLink => throw _privateConstructorUsedError;
+  String? get brandInstagramPageLink => throw _privateConstructorUsedError;
   String? get brandWebsiteLink => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_mobile_number')
   String get brandMobileNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_email_address')
   String get brandEmailAddress => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tax_id_number')
   String? get taxIdNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_description')
   String get brandDescription => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_logo_image_path')
   String get brandLogoImagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,17 +43,17 @@ abstract class $BrandCopyWith<$Res> {
       _$BrandCopyWithImpl<$Res, Brand>;
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'brand_type') String brandType,
-      @JsonKey(name: 'brand_name') String brandName,
-      @JsonKey(name: 'brand_facebook_page_link') String brandFacebookPageLink,
-      @JsonKey(name: 'brand_instagram_page_link') String brandInstagramPageLink,
-      @JsonKey(name: 'brand_website_link') String? brandWebsiteLink,
-      @JsonKey(name: 'brand_mobile_number') String brandMobileNumber,
-      @JsonKey(name: 'brand_email_address') String brandEmailAddress,
-      @JsonKey(name: 'tax_id_number') String? taxIdNumber,
-      @JsonKey(name: 'brand_description') String brandDescription,
-      @JsonKey(name: 'brand_logo_image_path') String brandLogoImagePath});
+      {int id,
+      String brandType,
+      String brandName,
+      String? brandFacebookPageLink,
+      String? brandInstagramPageLink,
+      String? brandWebsiteLink,
+      String brandMobileNumber,
+      String brandEmailAddress,
+      String? taxIdNumber,
+      String brandDescription,
+      String brandLogoImagePath});
 }
 
 /// @nodoc
@@ -82,8 +72,8 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
     Object? id = null,
     Object? brandType = null,
     Object? brandName = null,
-    Object? brandFacebookPageLink = null,
-    Object? brandInstagramPageLink = null,
+    Object? brandFacebookPageLink = freezed,
+    Object? brandInstagramPageLink = freezed,
     Object? brandWebsiteLink = freezed,
     Object? brandMobileNumber = null,
     Object? brandEmailAddress = null,
@@ -95,7 +85,7 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       brandType: null == brandType
           ? _value.brandType
           : brandType // ignore: cast_nullable_to_non_nullable
@@ -104,14 +94,14 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
-      brandFacebookPageLink: null == brandFacebookPageLink
+      brandFacebookPageLink: freezed == brandFacebookPageLink
           ? _value.brandFacebookPageLink
           : brandFacebookPageLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandInstagramPageLink: null == brandInstagramPageLink
+              as String?,
+      brandInstagramPageLink: freezed == brandInstagramPageLink
           ? _value.brandInstagramPageLink
           : brandInstagramPageLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       brandWebsiteLink: freezed == brandWebsiteLink
           ? _value.brandWebsiteLink
           : brandWebsiteLink // ignore: cast_nullable_to_non_nullable
@@ -148,17 +138,17 @@ abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'brand_type') String brandType,
-      @JsonKey(name: 'brand_name') String brandName,
-      @JsonKey(name: 'brand_facebook_page_link') String brandFacebookPageLink,
-      @JsonKey(name: 'brand_instagram_page_link') String brandInstagramPageLink,
-      @JsonKey(name: 'brand_website_link') String? brandWebsiteLink,
-      @JsonKey(name: 'brand_mobile_number') String brandMobileNumber,
-      @JsonKey(name: 'brand_email_address') String brandEmailAddress,
-      @JsonKey(name: 'tax_id_number') String? taxIdNumber,
-      @JsonKey(name: 'brand_description') String brandDescription,
-      @JsonKey(name: 'brand_logo_image_path') String brandLogoImagePath});
+      {int id,
+      String brandType,
+      String brandName,
+      String? brandFacebookPageLink,
+      String? brandInstagramPageLink,
+      String? brandWebsiteLink,
+      String brandMobileNumber,
+      String brandEmailAddress,
+      String? taxIdNumber,
+      String brandDescription,
+      String brandLogoImagePath});
 }
 
 /// @nodoc
@@ -175,8 +165,8 @@ class __$$BrandImplCopyWithImpl<$Res>
     Object? id = null,
     Object? brandType = null,
     Object? brandName = null,
-    Object? brandFacebookPageLink = null,
-    Object? brandInstagramPageLink = null,
+    Object? brandFacebookPageLink = freezed,
+    Object? brandInstagramPageLink = freezed,
     Object? brandWebsiteLink = freezed,
     Object? brandMobileNumber = null,
     Object? brandEmailAddress = null,
@@ -188,7 +178,7 @@ class __$$BrandImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       brandType: null == brandType
           ? _value.brandType
           : brandType // ignore: cast_nullable_to_non_nullable
@@ -197,14 +187,14 @@ class __$$BrandImplCopyWithImpl<$Res>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
-      brandFacebookPageLink: null == brandFacebookPageLink
+      brandFacebookPageLink: freezed == brandFacebookPageLink
           ? _value.brandFacebookPageLink
           : brandFacebookPageLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandInstagramPageLink: null == brandInstagramPageLink
+              as String?,
+      brandInstagramPageLink: freezed == brandInstagramPageLink
           ? _value.brandInstagramPageLink
           : brandInstagramPageLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       brandWebsiteLink: freezed == brandWebsiteLink
           ? _value.brandWebsiteLink
           : brandWebsiteLink // ignore: cast_nullable_to_non_nullable
@@ -238,54 +228,41 @@ class __$$BrandImplCopyWithImpl<$Res>
 class _$BrandImpl implements _Brand {
   const _$BrandImpl(
       {required this.id,
-      @JsonKey(name: 'brand_type') required this.brandType,
-      @JsonKey(name: 'brand_name') required this.brandName,
-      @JsonKey(name: 'brand_facebook_page_link')
+      required this.brandType,
+      required this.brandName,
       required this.brandFacebookPageLink,
-      @JsonKey(name: 'brand_instagram_page_link')
       required this.brandInstagramPageLink,
-      @JsonKey(name: 'brand_website_link') required this.brandWebsiteLink,
-      @JsonKey(name: 'brand_mobile_number') required this.brandMobileNumber,
-      @JsonKey(name: 'brand_email_address') required this.brandEmailAddress,
-      @JsonKey(name: 'tax_id_number') required this.taxIdNumber,
-      @JsonKey(name: 'brand_description') required this.brandDescription,
-      @JsonKey(name: 'brand_logo_image_path')
+      required this.brandWebsiteLink,
+      required this.brandMobileNumber,
+      required this.brandEmailAddress,
+      required this.taxIdNumber,
+      required this.brandDescription,
       required this.brandLogoImagePath});
 
   factory _$BrandImpl.fromJson(Map<String, dynamic> json) =>
       _$$BrandImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
-  @JsonKey(name: 'brand_type')
   final String brandType;
   @override
-  @JsonKey(name: 'brand_name')
   final String brandName;
   @override
-  @JsonKey(name: 'brand_facebook_page_link')
-  final String brandFacebookPageLink;
+  final String? brandFacebookPageLink;
   @override
-  @JsonKey(name: 'brand_instagram_page_link')
-  final String brandInstagramPageLink;
+  final String? brandInstagramPageLink;
   @override
-  @JsonKey(name: 'brand_website_link')
   final String? brandWebsiteLink;
   @override
-  @JsonKey(name: 'brand_mobile_number')
   final String brandMobileNumber;
   @override
-  @JsonKey(name: 'brand_email_address')
   final String brandEmailAddress;
   @override
-  @JsonKey(name: 'tax_id_number')
   final String? taxIdNumber;
   @override
-  @JsonKey(name: 'brand_description')
   final String brandDescription;
   @override
-  @JsonKey(name: 'brand_logo_image_path')
   final String brandLogoImagePath;
 
   @override
@@ -353,58 +330,41 @@ class _$BrandImpl implements _Brand {
 
 abstract class _Brand implements Brand {
   const factory _Brand(
-      {required final String id,
-      @JsonKey(name: 'brand_type') required final String brandType,
-      @JsonKey(name: 'brand_name') required final String brandName,
-      @JsonKey(name: 'brand_facebook_page_link')
-      required final String brandFacebookPageLink,
-      @JsonKey(name: 'brand_instagram_page_link')
-      required final String brandInstagramPageLink,
-      @JsonKey(name: 'brand_website_link')
+      {required final int id,
+      required final String brandType,
+      required final String brandName,
+      required final String? brandFacebookPageLink,
+      required final String? brandInstagramPageLink,
       required final String? brandWebsiteLink,
-      @JsonKey(name: 'brand_mobile_number')
       required final String brandMobileNumber,
-      @JsonKey(name: 'brand_email_address')
       required final String brandEmailAddress,
-      @JsonKey(name: 'tax_id_number') required final String? taxIdNumber,
-      @JsonKey(name: 'brand_description')
+      required final String? taxIdNumber,
       required final String brandDescription,
-      @JsonKey(name: 'brand_logo_image_path')
       required final String brandLogoImagePath}) = _$BrandImpl;
 
   factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  @JsonKey(name: 'brand_type')
   String get brandType;
   @override
-  @JsonKey(name: 'brand_name')
   String get brandName;
   @override
-  @JsonKey(name: 'brand_facebook_page_link')
-  String get brandFacebookPageLink;
+  String? get brandFacebookPageLink;
   @override
-  @JsonKey(name: 'brand_instagram_page_link')
-  String get brandInstagramPageLink;
+  String? get brandInstagramPageLink;
   @override
-  @JsonKey(name: 'brand_website_link')
   String? get brandWebsiteLink;
   @override
-  @JsonKey(name: 'brand_mobile_number')
   String get brandMobileNumber;
   @override
-  @JsonKey(name: 'brand_email_address')
   String get brandEmailAddress;
   @override
-  @JsonKey(name: 'tax_id_number')
   String? get taxIdNumber;
   @override
-  @JsonKey(name: 'brand_description')
   String get brandDescription;
   @override
-  @JsonKey(name: 'brand_logo_image_path')
   String get brandLogoImagePath;
   @override
   @JsonKey(ignore: true)

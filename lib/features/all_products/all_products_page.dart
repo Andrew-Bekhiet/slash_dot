@@ -8,7 +8,11 @@ import './bloc/all_products_event.dart';
 import './bloc/all_products_state.dart';
 
 final Provider<AllProductsBloc> allProductsBlocProvider =
-    Provider<AllProductsBloc>((ref) => AllProductsBloc());
+    Provider<AllProductsBloc>(
+  (ref) => AllProductsBloc(
+    productService: ref.read(productsServiceProvider),
+  ),
+);
 
 class AllProductsPage extends ConsumerStatefulWidget {
   const AllProductsPage({super.key});
@@ -18,6 +22,26 @@ class AllProductsPage extends ConsumerStatefulWidget {
 }
 
 class _AllProductsPageState extends ConsumerState<AllProductsPage> {
+  late AllProductsBloc bloc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    bloc = ref.read(allProductsBlocProvider);
+
+    if (bloc.state is! AllProductsLoaded) {
+      bloc.add(const AllProductsLoadMore());
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    bloc = ref.read(allProductsBlocProvider);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +49,7 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
         title: const Text('Slash.'),
       ),
       body: StreamBuilder<AllProductsState>(
-        stream: ref.read(allProductsBlocProvider).stream,
+        stream: bloc.stream,
         builder: (context, snapshot) {
           if (snapshot.hasError) return _AllProductsError(snapshot.error!);
 
@@ -37,10 +61,7 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
 
           if (data is! AllProductsLoaded) {
             return const _AllProductsError(
-              AllProductsError(
-                error: 'Unknown state',
-                lastEvent: AllProductsLoadMore(),
-              ),
+              AllProductsError(error: 'Unknown state'),
             );
           }
 
@@ -120,12 +141,13 @@ class _AllProductsError extends ConsumerWidget {
         children: [
           const Text('Oops! Something went wrong'),
           if (kDebugMode) Text(error.message ?? ''),
-          FilledButton.tonal(
-            onPressed: () {
-              ref.read(allProductsBlocProvider).add(error.lastEvent);
-            },
-            child: const Text('Try again'),
-          ),
+          if (error.lastEvent != null)
+            FilledButton.tonal(
+              onPressed: () {
+                ref.read(allProductsBlocProvider).add(error.lastEvent!);
+              },
+              child: const Text('Try again'),
+            ),
         ],
       ),
     );

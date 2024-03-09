@@ -6,8 +6,7 @@ part of 'product_variant_image.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductVariantImageImpl _$$ProductVariantImageImplFromJson(
-        Map<String, dynamic> json) =>
+_$ProductVariantImageImpl _$$ProductVariantImageImplFromJson(Map json) =>
     _$ProductVariantImageImpl(
       id: json['id'] as int,
       imagePath: json['image_path'] as String,

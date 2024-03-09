@@ -6,17 +6,16 @@ part of 'product_variation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductVariationImpl _$$ProductVariationImplFromJson(
-        Map<String, dynamic> json) =>
+_$ProductVariationImpl _$$ProductVariationImplFromJson(Map json) =>
     _$ProductVariationImpl(
       id: json['id'] as int,
       productId: json['product_id'] as int,
       price: (json['price'] as num).toDouble(),
       quantity: json['quantity'] as int,
       isDefault: json['is_default'] as bool? ?? true,
-      productVariantImages: (json['productVariantImages'] as List<dynamic>?)
-              ?.map((e) =>
-                  ProductVariantImage.fromJson(e as Map<String, dynamic>))
+      productVariantImages: (json['ProductVariantImages'] as List<dynamic>?)
+              ?.map((e) => ProductVariantImage.fromJson(
+                  Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [],
     );
@@ -29,5 +28,6 @@ Map<String, dynamic> _$$ProductVariationImplToJson(
       'price': instance.price,
       'quantity': instance.quantity,
       'is_default': instance.isDefault,
-      'productVariantImages': instance.productVariantImages,
+      'ProductVariantImages':
+          instance.productVariantImages.map((e) => e.toJson()).toList(),
     };

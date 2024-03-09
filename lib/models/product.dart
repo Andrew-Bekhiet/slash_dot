@@ -13,14 +13,15 @@ class Product with _$Product {
     required int id,
     required String name,
     required String description,
-    @JsonKey(name: 'brand_id') required int brandId,
-    required Brand brand,
-    @JsonKey(name: 'product_rating') required double rating,
+    required int brandId,
+    @JsonKey(name: 'Brands') required Brand brand,
+    required double? rating,
+    @JsonKey(name: 'ProductVariations')
     required List<ProductVariation> variations,
   }) = _Product;
   const Product._();
 
-  factory Product.fromJson(Map<String, Object?> json) =>
+  factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
 
   ProductVariation get defaultVariation =>
