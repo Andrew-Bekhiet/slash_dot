@@ -22,7 +22,8 @@ void main() {
 }
 
 class SlashDotApp extends StatelessWidget {
-  static final ThemeData defaultDarkTheme = ThemeData.from(
+  static ThemeData getDefaultDarkTheme() {
+    final themeData = ThemeData.from(
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xffb8ee2e),
       brightness: Brightness.dark,
@@ -30,13 +31,18 @@ class SlashDotApp extends StatelessWidget {
     useMaterial3: true,
   );
 
+    return themeData.copyWith(
+      appBarTheme: themeData.appBarTheme.copyWith(centerTitle: true),
+    );
+  }
+
   const SlashDotApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      darkTheme: defaultDarkTheme,
+      darkTheme: getDefaultDarkTheme(),
       themeMode: ThemeMode.dark,
       routes: NavigationService.instance.routes,
     );
