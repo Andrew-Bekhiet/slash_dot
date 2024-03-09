@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:slash_dot/services/navigation.dart';
+import 'package:slash_dot/slash_dot.dart';
 
 ProviderContainer? _globalProviderContainer;
 
@@ -24,12 +24,12 @@ void main() {
 class SlashDotApp extends StatelessWidget {
   static ThemeData getDefaultDarkTheme() {
     final themeData = ThemeData.from(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xffb8ee2e),
-      brightness: Brightness.dark,
-    ),
-    useMaterial3: true,
-  );
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xffb8ee2e),
+        brightness: Brightness.dark,
+      ),
+      useMaterial3: true,
+    );
 
     return themeData.copyWith(
       appBarTheme: themeData.appBarTheme.copyWith(centerTitle: true),
