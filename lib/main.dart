@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:slash_dot/slash_dot.dart';
@@ -13,6 +14,24 @@ set globalProviderContainer(ProviderContainer container) {
 }
 
 void main() {
+  FlutterError.onError = LoggingService.instance.reportFlutterError;
+  ErrorWidget.builder = (details) {
+    if (kReleaseMode) {
+      LoggingService.instance.reportFlutterError(details);
+
+      return const Material(
+        type: MaterialType.card,
+        child: Center(
+          child: Text(
+            'Oops! Something went wrong',
+          ),
+        ),
+      );
+    }
+
+    return ErrorWidget(details.exception);
+  };
+
   runApp(
     ProviderScope(
       parent: globalProviderContainer,

@@ -26,10 +26,12 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
   ) async {
     final AllProductsState lastState = state;
     final int lastPage = lastState is AllProductsLoaded ? lastState.page : 0;
-    final List<Product> lastProducts =
-        lastState is AllProductsLoaded ? lastState.products : [];
+    final List<Product>? previousProducts = switch (lastState) {
+      AllProductsLoaded(products: final products) => products,
+      _ => null,
+    };
 
-    emit(const AllProductsLoading());
+    emit(AllProductsLoading(previousProducts));
 
     try {
       final (List<Product> products, bool hasMore) =
@@ -40,7 +42,7 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
 
       emit(
         AllProductsLoaded(
-          products: [...lastProducts, ...products],
+          products: [...previousProducts ?? [], ...products],
           page: lastPage + 1,
           hasMore: hasMore,
         ),

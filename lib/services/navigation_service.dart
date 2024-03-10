@@ -16,7 +16,8 @@ class NavigationService {
         // '/product': _productDetailsPageBuilder,
       };
 
-  Widget _allProductsPageBuilder(BuildContext context) => AllProductsPage();
+  Widget _allProductsPageBuilder(BuildContext context) =>
+      const AllProductsPage();
 
   // Widget _productDetailsPageBuilder(BuildContext context) =>
   //     ProductDetailsPage();

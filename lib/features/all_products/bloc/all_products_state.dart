@@ -10,7 +10,9 @@ class AllProductsInitial extends AllProductsState {
 }
 
 class AllProductsLoading extends AllProductsState {
-  const AllProductsLoading();
+  final List<Product>? previousProducts;
+
+  const AllProductsLoading(this.previousProducts);
 }
 
 class AllProductsLoaded extends AllProductsState with EquatableMixin {
@@ -28,7 +30,9 @@ class AllProductsLoaded extends AllProductsState with EquatableMixin {
   List<Object?> get props => [products, page];
 }
 
-class AllProductsError extends AllProductsState with EquatableMixin {
+class AllProductsError extends AllProductsState
+    with EquatableMixin
+    implements Exception {
   final Object error;
   final String? message;
   final AllProductsEvent? lastEvent;

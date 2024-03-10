@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:slash_dot/slash_dot.dart';
 
 final Provider<AllProductsBloc> allProductsBlocProvider =
@@ -53,53 +53,46 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
       appBar: AppBar(
         title: const Text('Slash.'),
       ),
-      body: StreamBuilder<(AllProductsLoaded?, AllProductsState)>(
-        stream: Rx.combineLatest2(
-          bloc.stream.whereType<AllProductsLoaded?>().startWith(null),
-          bloc.stream,
-          (previousLoadedState, state) => (previousLoadedState, state),
-        ),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return _AllProductsError(
-              snapshot.error!,
-              onRetry: snapshot.error is AllProductsError
-                  ? () =>
-                      _onRetry((snapshot.error! as AllProductsError).lastEvent!)
-                  : null,
-            );
+      body: BlocBuilder<AllProductsBloc, AllProductsState>(
+        bloc: bloc,
+        builder: (context, state) {
+          switch (state) {
+            case AllProductsError():
+              return _AllProductsError(
+                state,
+                onRetry: () => _onRetry(state.lastEvent!),
+              );
+
+            case AllProductsInitial():
+              return const _AllProductsLoading();
+
+            case AllProductsLoading(previousProducts: null):
+              return const _AllProductsLoading();
+
+            case AllProductsLoading(
+                      previousProducts: final List<Product> products
+                    ) ||
+                    AllProductsLoaded(products: final List<Product> products)
+                when products.isEmpty:
+              return const _AllProductsEmpty();
+
+            case AllProductsLoading(
+                    previousProducts: final List<Product> products
+                  ) ||
+                  AllProductsLoaded(products: final List<Product> products):
+              return Column(
+                children: [
+                  Expanded(
+                    child: AllProductsList(
+                      products,
+                      onLoadMoreRequested: _onLoadMore,
+                    ),
+                  ),
+                  if (state is AllProductsLoading)
+                    const Center(child: CircularProgressIndicator()),
+                ],
+              );
           }
-
-          if (!snapshot.hasData) {
-            return const _AllProductsLoading();
-          }
-
-          final (previousLoadedState, state) = snapshot.data!;
-
-          if (previousLoadedState == null) {
-            return const _AllProductsLoading();
-          }
-
-          final List<Product> products = state is AllProductsLoaded
-              ? state.products
-              : previousLoadedState.products;
-
-          if (products.isEmpty) {
-            return const _AllProductsEmpty();
-          }
-
-          return Column(
-            children: [
-              Expanded(
-                child: AllProductsList(
-                  products,
-                  onLoadMoreRequested: _onLoadMore,
-                ),
-              ),
-              if (state is AllProductsLoading)
-                const Center(child: CircularProgressIndicator()),
-            ],
-          );
         },
       ),
     );
