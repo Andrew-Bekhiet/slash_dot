@@ -1,13 +1,15 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:slash_dot/slash_dot.dart';
 
 class AllProductsList extends StatelessWidget {
   final List<Product> products;
   final VoidCallback onLoadMoreRequested;
+  final bool isLoading;
 
   const AllProductsList(
     this.products, {
     required this.onLoadMoreRequested,
+    this.isLoading = false,
     super.key,
   });
 
@@ -23,8 +25,17 @@ class AllProductsList extends StatelessWidget {
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
           ),
-          itemCount: products.length,
+          itemCount: products.length +
+              (isLoading
+                  ? products.length.isEven
+                      ? 2
+                      : 1
+                  : 0),
           itemBuilder: (context, index) {
+            if (index >= products.length) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
             final Product product = products[index];
 
             return ProductWidget(product: product);

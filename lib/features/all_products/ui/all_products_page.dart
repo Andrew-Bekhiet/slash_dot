@@ -80,17 +80,10 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
                     previousProducts: final List<Product> products
                   ) ||
                   AllProductsLoaded(products: final List<Product> products):
-              return Column(
-                children: [
-                  Expanded(
-                    child: AllProductsList(
-                      products,
-                      onLoadMoreRequested: _onLoadMore,
-                    ),
-                  ),
-                  if (state is AllProductsLoading)
-                    const Center(child: CircularProgressIndicator()),
-                ],
+              return AllProductsList(
+                isLoading: true,
+                products,
+                onLoadMoreRequested: _onLoadMore,
               );
           }
         },
