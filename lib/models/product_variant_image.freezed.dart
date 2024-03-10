@@ -24,7 +24,7 @@ mixin _$ProductVariantImage {
   @JsonKey(name: 'image_path')
   String get imagePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_varient_id')
-  int get productVariantId => throw _privateConstructorUsedError;
+  int? get productVariantId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $ProductVariantImageCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: 'image_path') String imagePath,
-      @JsonKey(name: 'product_varient_id') int productVariantId});
+      @JsonKey(name: 'product_varient_id') int? productVariantId});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$ProductVariantImageCopyWithImpl<$Res, $Val extends ProductVariantImage>
   $Res call({
     Object? id = null,
     Object? imagePath = null,
-    Object? productVariantId = null,
+    Object? productVariantId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -70,10 +70,10 @@ class _$ProductVariantImageCopyWithImpl<$Res, $Val extends ProductVariantImage>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      productVariantId: null == productVariantId
+      productVariantId: freezed == productVariantId
           ? _value.productVariantId
           : productVariantId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -89,7 +89,7 @@ abstract class _$$ProductVariantImageImplCopyWith<$Res>
   $Res call(
       {int id,
       @JsonKey(name: 'image_path') String imagePath,
-      @JsonKey(name: 'product_varient_id') int productVariantId});
+      @JsonKey(name: 'product_varient_id') int? productVariantId});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$ProductVariantImageImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? imagePath = null,
-    Object? productVariantId = null,
+    Object? productVariantId = freezed,
   }) {
     return _then(_$ProductVariantImageImpl(
       id: null == id
@@ -116,10 +116,10 @@ class __$$ProductVariantImageImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      productVariantId: null == productVariantId
+      productVariantId: freezed == productVariantId
           ? _value.productVariantId
           : productVariantId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -130,7 +130,7 @@ class _$ProductVariantImageImpl implements _ProductVariantImage {
   const _$ProductVariantImageImpl(
       {required this.id,
       @JsonKey(name: 'image_path') required this.imagePath,
-      @JsonKey(name: 'product_varient_id') required this.productVariantId});
+      @JsonKey(name: 'product_varient_id') this.productVariantId});
 
   factory _$ProductVariantImageImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductVariantImageImplFromJson(json);
@@ -142,7 +142,7 @@ class _$ProductVariantImageImpl implements _ProductVariantImage {
   final String imagePath;
   @override
   @JsonKey(name: 'product_varient_id')
-  final int productVariantId;
+  final int? productVariantId;
 
   @override
   String toString() {
@@ -182,10 +182,10 @@ class _$ProductVariantImageImpl implements _ProductVariantImage {
 
 abstract class _ProductVariantImage implements ProductVariantImage {
   const factory _ProductVariantImage(
-      {required final int id,
-      @JsonKey(name: 'image_path') required final String imagePath,
-      @JsonKey(name: 'product_varient_id')
-      required final int productVariantId}) = _$ProductVariantImageImpl;
+          {required final int id,
+          @JsonKey(name: 'image_path') required final String imagePath,
+          @JsonKey(name: 'product_varient_id') final int? productVariantId}) =
+      _$ProductVariantImageImpl;
 
   factory _ProductVariantImage.fromJson(Map<String, dynamic> json) =
       _$ProductVariantImageImpl.fromJson;
@@ -197,7 +197,7 @@ abstract class _ProductVariantImage implements ProductVariantImage {
   String get imagePath;
   @override
   @JsonKey(name: 'product_varient_id')
-  int get productVariantId;
+  int? get productVariantId;
   @override
   @JsonKey(ignore: true)
   _$$ProductVariantImageImplCopyWith<_$ProductVariantImageImpl> get copyWith =>

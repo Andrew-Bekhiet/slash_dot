@@ -81,7 +81,7 @@ class _AllProductsPageState extends ConsumerState<AllProductsPage> {
                   ) ||
                   AllProductsLoaded(products: final List<Product> products):
               return AllProductsList(
-                isLoading: true,
+                isLoading: state is AllProductsLoading,
                 products,
                 onLoadMoreRequested: _onLoadMore,
               );

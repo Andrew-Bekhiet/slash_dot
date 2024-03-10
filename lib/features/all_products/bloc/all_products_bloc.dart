@@ -11,12 +11,12 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
 
   AllProductsBloc({
     required ProductsService productService,
-    this.loadLimit = 5,
+    this.loadLimit = 500,
   })  : _productService = productService,
         super(const AllProductsInitial()) {
     on<AllProductsLoadMore>(
       _onLoadMore,
-      transformer: _throttleLoadMore,
+      transformer: _throttleAndFilterLoadMore,
     );
   }
 
@@ -58,12 +58,17 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
     }
   }
 
-  Stream<AllProductsLoadMore> _throttleLoadMore(
+  Stream<AllProductsLoadMore> _throttleAndFilterLoadMore(
     Stream<AllProductsLoadMore> events,
     Stream<AllProductsLoadMore> Function(AllProductsLoadMore) mapper,
   ) =>
       events
-          .where((_) => state is! AllProductsLoading)
+          .where(
+            (_) =>
+                state is! AllProductsLoading &&
+                (state is! AllProductsLoaded ||
+                    (state as AllProductsLoaded).hasMore),
+          )
           .throttleTime(const Duration(seconds: 1))
           .switchMap(mapper);
 }

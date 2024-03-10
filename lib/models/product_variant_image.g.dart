@@ -10,7 +10,7 @@ _$ProductVariantImageImpl _$$ProductVariantImageImplFromJson(Map json) =>
     _$ProductVariantImageImpl(
       id: json['id'] as int,
       imagePath: json['image_path'] as String,
-      productVariantId: json['product_varient_id'] as int,
+      productVariantId: json['product_varient_id'] as int?,
     );
 
 Map<String, dynamic> _$$ProductVariantImageImplToJson(

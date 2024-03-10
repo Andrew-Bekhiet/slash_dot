@@ -13,7 +13,7 @@ _$ProductVariationImpl _$$ProductVariationImplFromJson(Map json) =>
       price: (json['price'] as num).toDouble(),
       quantity: json['quantity'] as int,
       isDefault: json['is_default'] as bool? ?? true,
-      productVariantImages: (json['ProductVariantImages'] as List<dynamic>?)
+      productVariantImages: (json['ProductVarientImages'] as List<dynamic>?)
               ?.map((e) => ProductVariantImage.fromJson(
                   Map<String, dynamic>.from(e as Map)))
               .toList() ??
@@ -28,6 +28,6 @@ Map<String, dynamic> _$$ProductVariationImplToJson(
       'price': instance.price,
       'quantity': instance.quantity,
       'is_default': instance.isDefault,
-      'ProductVariantImages':
+      'ProductVarientImages':
           instance.productVariantImages.map((e) => e.toJson()).toList(),
     };

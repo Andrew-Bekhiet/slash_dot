@@ -25,7 +25,7 @@ mixin _$ProductVariation {
   double get price => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ProductVariantImages')
+  @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages =>
       throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $ProductVariationCopyWith<$Res> {
       double price,
       int quantity,
       bool isDefault,
-      @JsonKey(name: 'ProductVariantImages')
+      @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages});
 }
 
@@ -114,7 +114,7 @@ abstract class _$$ProductVariationImplCopyWith<$Res>
       double price,
       int quantity,
       bool isDefault,
-      @JsonKey(name: 'ProductVariantImages')
+      @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages});
 }
 
@@ -174,7 +174,7 @@ class _$ProductVariationImpl implements _ProductVariation {
       required this.price,
       required this.quantity,
       this.isDefault = true,
-      @JsonKey(name: 'ProductVariantImages')
+      @JsonKey(name: 'ProductVarientImages')
       final List<ProductVariantImage> productVariantImages = const []})
       : _productVariantImages = productVariantImages;
 
@@ -194,7 +194,7 @@ class _$ProductVariationImpl implements _ProductVariation {
   final bool isDefault;
   final List<ProductVariantImage> _productVariantImages;
   @override
-  @JsonKey(name: 'ProductVariantImages')
+  @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages {
     if (_productVariantImages is EqualUnmodifiableListView)
       return _productVariantImages;
@@ -251,7 +251,7 @@ abstract class _ProductVariation implements ProductVariation {
           required final double price,
           required final int quantity,
           final bool isDefault,
-          @JsonKey(name: 'ProductVariantImages')
+          @JsonKey(name: 'ProductVarientImages')
           final List<ProductVariantImage> productVariantImages}) =
       _$ProductVariationImpl;
 
@@ -269,7 +269,7 @@ abstract class _ProductVariation implements ProductVariation {
   @override
   bool get isDefault;
   @override
-  @JsonKey(name: 'ProductVariantImages')
+  @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages;
   @override
   @JsonKey(ignore: true)

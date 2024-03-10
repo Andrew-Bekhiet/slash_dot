@@ -13,7 +13,7 @@ class ProductVariation with _$ProductVariation {
     required double price,
     required int quantity,
     @Default(true) bool isDefault,
-    @JsonKey(name: 'ProductVariantImages')
+    @JsonKey(name: 'ProductVarientImages')
     @Default([])
     List<ProductVariantImage> productVariantImages,
   }) = _ProductVariation;
