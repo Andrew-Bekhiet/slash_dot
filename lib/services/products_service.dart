@@ -49,4 +49,16 @@ class ProductsService {
       rethrow;
     }
   }
+
+  Future<Product> getProductDetails(int productId) async {
+    try {
+      final Response response = await _dio.get('/product/$productId');
+
+      return Product.fromJson(response.data as Map<String, dynamic>);
+    } on Exception catch (e, stackTrace) {
+      await LoggingService.instance.reportError(e, stackTrace);
+
+      rethrow;
+    }
+  }
 }

@@ -29,6 +29,9 @@ mixin _$Product {
   double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProductVariations')
   List<ProductVariation> get variations => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avaiableProperties')
+  List<AvailablePropertyValues> get availableProperties =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +50,9 @@ abstract class $ProductCopyWith<$Res> {
       int brandId,
       @JsonKey(name: 'Brands') Brand brand,
       double? rating,
-      @JsonKey(name: 'ProductVariations') List<ProductVariation> variations});
+      @JsonKey(name: 'ProductVariations') List<ProductVariation> variations,
+      @JsonKey(name: 'avaiableProperties')
+      List<AvailablePropertyValues> availableProperties});
 
   $BrandCopyWith<$Res> get brand;
 }
@@ -72,6 +77,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? brand = null,
     Object? rating = freezed,
     Object? variations = null,
+    Object? availableProperties = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -102,6 +108,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.variations
           : variations // ignore: cast_nullable_to_non_nullable
               as List<ProductVariation>,
+      availableProperties: null == availableProperties
+          ? _value.availableProperties
+          : availableProperties // ignore: cast_nullable_to_non_nullable
+              as List<AvailablePropertyValues>,
     ) as $Val);
   }
 
@@ -128,7 +138,9 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       int brandId,
       @JsonKey(name: 'Brands') Brand brand,
       double? rating,
-      @JsonKey(name: 'ProductVariations') List<ProductVariation> variations});
+      @JsonKey(name: 'ProductVariations') List<ProductVariation> variations,
+      @JsonKey(name: 'avaiableProperties')
+      List<AvailablePropertyValues> availableProperties});
 
   @override
   $BrandCopyWith<$Res> get brand;
@@ -152,6 +164,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? brand = null,
     Object? rating = freezed,
     Object? variations = null,
+    Object? availableProperties = null,
   }) {
     return _then(_$ProductImpl(
       id: null == id
@@ -182,6 +195,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value._variations
           : variations // ignore: cast_nullable_to_non_nullable
               as List<ProductVariation>,
+      availableProperties: null == availableProperties
+          ? _value._availableProperties
+          : availableProperties // ignore: cast_nullable_to_non_nullable
+              as List<AvailablePropertyValues>,
     ));
   }
 }
@@ -197,8 +214,11 @@ class _$ProductImpl extends _Product with DiagnosticableTreeMixin {
       @JsonKey(name: 'Brands') required this.brand,
       required this.rating,
       @JsonKey(name: 'ProductVariations')
-      required final List<ProductVariation> variations})
+      required final List<ProductVariation> variations,
+      @JsonKey(name: 'avaiableProperties')
+      final List<AvailablePropertyValues> availableProperties = const []})
       : _variations = variations,
+        _availableProperties = availableProperties,
         super._();
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -226,9 +246,19 @@ class _$ProductImpl extends _Product with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_variations);
   }
 
+  final List<AvailablePropertyValues> _availableProperties;
+  @override
+  @JsonKey(name: 'avaiableProperties')
+  List<AvailablePropertyValues> get availableProperties {
+    if (_availableProperties is EqualUnmodifiableListView)
+      return _availableProperties;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableProperties);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Product(id: $id, name: $name, description: $description, brandId: $brandId, brand: $brand, rating: $rating, variations: $variations)';
+    return 'Product(id: $id, name: $name, description: $description, brandId: $brandId, brand: $brand, rating: $rating, variations: $variations, availableProperties: $availableProperties)';
   }
 
   @override
@@ -242,7 +272,8 @@ class _$ProductImpl extends _Product with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('brandId', brandId))
       ..add(DiagnosticsProperty('brand', brand))
       ..add(DiagnosticsProperty('rating', rating))
-      ..add(DiagnosticsProperty('variations', variations));
+      ..add(DiagnosticsProperty('variations', variations))
+      ..add(DiagnosticsProperty('availableProperties', availableProperties));
   }
 
   @override
@@ -258,13 +289,23 @@ class _$ProductImpl extends _Product with DiagnosticableTreeMixin {
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
-                .equals(other._variations, _variations));
+                .equals(other._variations, _variations) &&
+            const DeepCollectionEquality()
+                .equals(other._availableProperties, _availableProperties));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, brandId,
-      brand, rating, const DeepCollectionEquality().hash(_variations));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      brandId,
+      brand,
+      rating,
+      const DeepCollectionEquality().hash(_variations),
+      const DeepCollectionEquality().hash(_availableProperties));
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +330,9 @@ abstract class _Product extends Product {
       @JsonKey(name: 'Brands') required final Brand brand,
       required final double? rating,
       @JsonKey(name: 'ProductVariations')
-      required final List<ProductVariation> variations}) = _$ProductImpl;
+      required final List<ProductVariation> variations,
+      @JsonKey(name: 'avaiableProperties')
+      final List<AvailablePropertyValues> availableProperties}) = _$ProductImpl;
   const _Product._() : super._();
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
@@ -310,6 +353,9 @@ abstract class _Product extends Product {
   @override
   @JsonKey(name: 'ProductVariations')
   List<ProductVariation> get variations;
+  @override
+  @JsonKey(name: 'avaiableProperties')
+  List<AvailablePropertyValues> get availableProperties;
   @override
   @JsonKey(ignore: true)
   _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>

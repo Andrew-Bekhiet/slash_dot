@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'brand.dart';
-import 'product_variation.dart';
+import 'package:slash_dot/slash_dot.dart';
 
 part 'product.freezed.dart';
 part 'product.g.dart';
@@ -18,6 +16,9 @@ class Product with _$Product {
     required double? rating,
     @JsonKey(name: 'ProductVariations')
     required List<ProductVariation> variations,
+    @Default([])
+    @JsonKey(name: 'avaiableProperties')
+    List<AvailablePropertyValues> availableProperties,
   }) = _Product;
   const Product._();
 

@@ -21,6 +21,16 @@ import 'package:slash_dot/slash_dot.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeProduct_0 extends _i1.SmartFake implements _i2.Product {
+  _FakeProduct_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ProductsService].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -44,4 +54,27 @@ class MockProductsService extends _i1.Mock implements _i2.ProductsService {
         returnValueForMissingStub: _i3.Future<(List<_i2.Product>, bool)>.value(
             (<_i2.Product>[], false)),
       ) as _i3.Future<(List<_i2.Product>, bool)>);
+
+  @override
+  _i3.Future<_i2.Product> getProductDetails(int? productId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductDetails,
+          [productId],
+        ),
+        returnValue: _i3.Future<_i2.Product>.value(_FakeProduct_0(
+          this,
+          Invocation.method(
+            #getProductDetails,
+            [productId],
+          ),
+        )),
+        returnValueForMissingStub: _i3.Future<_i2.Product>.value(_FakeProduct_0(
+          this,
+          Invocation.method(
+            #getProductDetails,
+            [productId],
+          ),
+        )),
+      ) as _i3.Future<_i2.Product>);
 }

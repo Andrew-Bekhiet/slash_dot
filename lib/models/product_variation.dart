@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'product_variant_image.dart';
+import 'package:slash_dot/slash_dot.dart';
 
 part 'product_variation.freezed.dart';
 part 'product_variation.g.dart';
@@ -16,6 +15,7 @@ class ProductVariation with _$ProductVariation {
     @JsonKey(name: 'ProductVarientImages')
     @Default([])
     List<ProductVariantImage> productVariantImages,
+    @Default([]) List<PropertyValue> productPropertiesValues,
   }) = _ProductVariation;
 
   factory ProductVariation.fromJson(Map<String, dynamic> json) =>

@@ -13,12 +13,20 @@ class NavigationService {
 
   Map<String, Widget Function(BuildContext)> get routes => {
         '/': _allProductsPageBuilder,
-        // '/product': _productDetailsPageBuilder,
+        '/product': _productDetailsPageBuilder,
       };
 
   Widget _allProductsPageBuilder(BuildContext context) =>
       const AllProductsPage();
 
-  // Widget _productDetailsPageBuilder(BuildContext context) =>
-  //     ProductDetailsPage();
+  Widget _productDetailsPageBuilder(BuildContext context) => ProductDetailsPage(
+        product: ModalRoute.of(context)!.settings.arguments! as Product,
+      );
+
+  void navigateToProductDetails(BuildContext context, Product product) {
+    Navigator.of(context).pushNamed(
+      '/product',
+      arguments: product,
+    );
+  }
 }

@@ -25,8 +25,8 @@ class AllProductsList extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: (MediaQuery.of(context).size.width / 200).floor(),
               childAspectRatio: 2 / 3,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
             ),
             itemCount: products.length +
                 (isLoading

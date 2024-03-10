@@ -18,6 +18,12 @@ _$ProductVariationImpl _$$ProductVariationImplFromJson(Map json) =>
                   Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [],
+      productPropertiesValues: (json['product_properties_values']
+                  as List<dynamic>?)
+              ?.map((e) =>
+                  PropertyValue.fromJson(Map<String, dynamic>.from(e as Map)))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$ProductVariationImplToJson(
@@ -30,4 +36,6 @@ Map<String, dynamic> _$$ProductVariationImplToJson(
       'is_default': instance.isDefault,
       'ProductVarientImages':
           instance.productVariantImages.map((e) => e.toJson()).toList(),
+      'product_properties_values':
+          instance.productPropertiesValues.map((e) => e.toJson()).toList(),
     };

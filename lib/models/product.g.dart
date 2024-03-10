@@ -17,6 +17,11 @@ _$ProductImpl _$$ProductImplFromJson(Map json) => _$ProductImpl(
           .map((e) =>
               ProductVariation.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
+      availableProperties: (json['avaiableProperties'] as List<dynamic>?)
+              ?.map((e) => AvailablePropertyValues.fromJson(
+                  Map<String, dynamic>.from(e as Map)))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
@@ -28,4 +33,6 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'Brands': instance.brand.toJson(),
       'rating': instance.rating,
       'ProductVariations': instance.variations.map((e) => e.toJson()).toList(),
+      'avaiableProperties':
+          instance.availableProperties.map((e) => e.toJson()).toList(),
     };
