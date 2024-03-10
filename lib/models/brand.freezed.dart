@@ -23,14 +23,14 @@ mixin _$Brand {
   int get id => throw _privateConstructorUsedError;
   String get brandType => throw _privateConstructorUsedError;
   String get brandName => throw _privateConstructorUsedError;
+  String get brandMobileNumber => throw _privateConstructorUsedError;
+  String get brandEmailAddress => throw _privateConstructorUsedError;
+  String get brandDescription => throw _privateConstructorUsedError;
+  String get brandLogoImagePath => throw _privateConstructorUsedError;
   String? get brandFacebookPageLink => throw _privateConstructorUsedError;
   String? get brandInstagramPageLink => throw _privateConstructorUsedError;
   String? get brandWebsiteLink => throw _privateConstructorUsedError;
-  String get brandMobileNumber => throw _privateConstructorUsedError;
-  String get brandEmailAddress => throw _privateConstructorUsedError;
   String? get taxIdNumber => throw _privateConstructorUsedError;
-  String get brandDescription => throw _privateConstructorUsedError;
-  String get brandLogoImagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,14 +46,14 @@ abstract class $BrandCopyWith<$Res> {
       {int id,
       String brandType,
       String brandName,
+      String brandMobileNumber,
+      String brandEmailAddress,
+      String brandDescription,
+      String brandLogoImagePath,
       String? brandFacebookPageLink,
       String? brandInstagramPageLink,
       String? brandWebsiteLink,
-      String brandMobileNumber,
-      String brandEmailAddress,
-      String? taxIdNumber,
-      String brandDescription,
-      String brandLogoImagePath});
+      String? taxIdNumber});
 }
 
 /// @nodoc
@@ -72,14 +72,14 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
     Object? id = null,
     Object? brandType = null,
     Object? brandName = null,
+    Object? brandMobileNumber = null,
+    Object? brandEmailAddress = null,
+    Object? brandDescription = null,
+    Object? brandLogoImagePath = null,
     Object? brandFacebookPageLink = freezed,
     Object? brandInstagramPageLink = freezed,
     Object? brandWebsiteLink = freezed,
-    Object? brandMobileNumber = null,
-    Object? brandEmailAddress = null,
     Object? taxIdNumber = freezed,
-    Object? brandDescription = null,
-    Object? brandLogoImagePath = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -94,6 +94,22 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      brandMobileNumber: null == brandMobileNumber
+          ? _value.brandMobileNumber
+          : brandMobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandEmailAddress: null == brandEmailAddress
+          ? _value.brandEmailAddress
+          : brandEmailAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandDescription: null == brandDescription
+          ? _value.brandDescription
+          : brandDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandLogoImagePath: null == brandLogoImagePath
+          ? _value.brandLogoImagePath
+          : brandLogoImagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       brandFacebookPageLink: freezed == brandFacebookPageLink
           ? _value.brandFacebookPageLink
           : brandFacebookPageLink // ignore: cast_nullable_to_non_nullable
@@ -106,26 +122,10 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
           ? _value.brandWebsiteLink
           : brandWebsiteLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      brandMobileNumber: null == brandMobileNumber
-          ? _value.brandMobileNumber
-          : brandMobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandEmailAddress: null == brandEmailAddress
-          ? _value.brandEmailAddress
-          : brandEmailAddress // ignore: cast_nullable_to_non_nullable
-              as String,
       taxIdNumber: freezed == taxIdNumber
           ? _value.taxIdNumber
           : taxIdNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      brandDescription: null == brandDescription
-          ? _value.brandDescription
-          : brandDescription // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandLogoImagePath: null == brandLogoImagePath
-          ? _value.brandLogoImagePath
-          : brandLogoImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -141,14 +141,14 @@ abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
       {int id,
       String brandType,
       String brandName,
+      String brandMobileNumber,
+      String brandEmailAddress,
+      String brandDescription,
+      String brandLogoImagePath,
       String? brandFacebookPageLink,
       String? brandInstagramPageLink,
       String? brandWebsiteLink,
-      String brandMobileNumber,
-      String brandEmailAddress,
-      String? taxIdNumber,
-      String brandDescription,
-      String brandLogoImagePath});
+      String? taxIdNumber});
 }
 
 /// @nodoc
@@ -165,14 +165,14 @@ class __$$BrandImplCopyWithImpl<$Res>
     Object? id = null,
     Object? brandType = null,
     Object? brandName = null,
+    Object? brandMobileNumber = null,
+    Object? brandEmailAddress = null,
+    Object? brandDescription = null,
+    Object? brandLogoImagePath = null,
     Object? brandFacebookPageLink = freezed,
     Object? brandInstagramPageLink = freezed,
     Object? brandWebsiteLink = freezed,
-    Object? brandMobileNumber = null,
-    Object? brandEmailAddress = null,
     Object? taxIdNumber = freezed,
-    Object? brandDescription = null,
-    Object? brandLogoImagePath = null,
   }) {
     return _then(_$BrandImpl(
       id: null == id
@@ -187,6 +187,22 @@ class __$$BrandImplCopyWithImpl<$Res>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      brandMobileNumber: null == brandMobileNumber
+          ? _value.brandMobileNumber
+          : brandMobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandEmailAddress: null == brandEmailAddress
+          ? _value.brandEmailAddress
+          : brandEmailAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandDescription: null == brandDescription
+          ? _value.brandDescription
+          : brandDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brandLogoImagePath: null == brandLogoImagePath
+          ? _value.brandLogoImagePath
+          : brandLogoImagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       brandFacebookPageLink: freezed == brandFacebookPageLink
           ? _value.brandFacebookPageLink
           : brandFacebookPageLink // ignore: cast_nullable_to_non_nullable
@@ -199,26 +215,10 @@ class __$$BrandImplCopyWithImpl<$Res>
           ? _value.brandWebsiteLink
           : brandWebsiteLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      brandMobileNumber: null == brandMobileNumber
-          ? _value.brandMobileNumber
-          : brandMobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandEmailAddress: null == brandEmailAddress
-          ? _value.brandEmailAddress
-          : brandEmailAddress // ignore: cast_nullable_to_non_nullable
-              as String,
       taxIdNumber: freezed == taxIdNumber
           ? _value.taxIdNumber
           : taxIdNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      brandDescription: null == brandDescription
-          ? _value.brandDescription
-          : brandDescription // ignore: cast_nullable_to_non_nullable
-              as String,
-      brandLogoImagePath: null == brandLogoImagePath
-          ? _value.brandLogoImagePath
-          : brandLogoImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -230,14 +230,14 @@ class _$BrandImpl implements _Brand {
       {required this.id,
       required this.brandType,
       required this.brandName,
-      required this.brandFacebookPageLink,
-      required this.brandInstagramPageLink,
-      required this.brandWebsiteLink,
       required this.brandMobileNumber,
       required this.brandEmailAddress,
-      required this.taxIdNumber,
       required this.brandDescription,
-      required this.brandLogoImagePath});
+      required this.brandLogoImagePath,
+      this.brandFacebookPageLink,
+      this.brandInstagramPageLink,
+      this.brandWebsiteLink,
+      this.taxIdNumber});
 
   factory _$BrandImpl.fromJson(Map<String, dynamic> json) =>
       _$$BrandImplFromJson(json);
@@ -249,25 +249,25 @@ class _$BrandImpl implements _Brand {
   @override
   final String brandName;
   @override
+  final String brandMobileNumber;
+  @override
+  final String brandEmailAddress;
+  @override
+  final String brandDescription;
+  @override
+  final String brandLogoImagePath;
+  @override
   final String? brandFacebookPageLink;
   @override
   final String? brandInstagramPageLink;
   @override
   final String? brandWebsiteLink;
   @override
-  final String brandMobileNumber;
-  @override
-  final String brandEmailAddress;
-  @override
   final String? taxIdNumber;
-  @override
-  final String brandDescription;
-  @override
-  final String brandLogoImagePath;
 
   @override
   String toString() {
-    return 'Brand(id: $id, brandType: $brandType, brandName: $brandName, brandFacebookPageLink: $brandFacebookPageLink, brandInstagramPageLink: $brandInstagramPageLink, brandWebsiteLink: $brandWebsiteLink, brandMobileNumber: $brandMobileNumber, brandEmailAddress: $brandEmailAddress, taxIdNumber: $taxIdNumber, brandDescription: $brandDescription, brandLogoImagePath: $brandLogoImagePath)';
+    return 'Brand(id: $id, brandType: $brandType, brandName: $brandName, brandMobileNumber: $brandMobileNumber, brandEmailAddress: $brandEmailAddress, brandDescription: $brandDescription, brandLogoImagePath: $brandLogoImagePath, brandFacebookPageLink: $brandFacebookPageLink, brandInstagramPageLink: $brandInstagramPageLink, brandWebsiteLink: $brandWebsiteLink, taxIdNumber: $taxIdNumber)';
   }
 
   @override
@@ -280,22 +280,22 @@ class _$BrandImpl implements _Brand {
                 other.brandType == brandType) &&
             (identical(other.brandName, brandName) ||
                 other.brandName == brandName) &&
+            (identical(other.brandMobileNumber, brandMobileNumber) ||
+                other.brandMobileNumber == brandMobileNumber) &&
+            (identical(other.brandEmailAddress, brandEmailAddress) ||
+                other.brandEmailAddress == brandEmailAddress) &&
+            (identical(other.brandDescription, brandDescription) ||
+                other.brandDescription == brandDescription) &&
+            (identical(other.brandLogoImagePath, brandLogoImagePath) ||
+                other.brandLogoImagePath == brandLogoImagePath) &&
             (identical(other.brandFacebookPageLink, brandFacebookPageLink) ||
                 other.brandFacebookPageLink == brandFacebookPageLink) &&
             (identical(other.brandInstagramPageLink, brandInstagramPageLink) ||
                 other.brandInstagramPageLink == brandInstagramPageLink) &&
             (identical(other.brandWebsiteLink, brandWebsiteLink) ||
                 other.brandWebsiteLink == brandWebsiteLink) &&
-            (identical(other.brandMobileNumber, brandMobileNumber) ||
-                other.brandMobileNumber == brandMobileNumber) &&
-            (identical(other.brandEmailAddress, brandEmailAddress) ||
-                other.brandEmailAddress == brandEmailAddress) &&
             (identical(other.taxIdNumber, taxIdNumber) ||
-                other.taxIdNumber == taxIdNumber) &&
-            (identical(other.brandDescription, brandDescription) ||
-                other.brandDescription == brandDescription) &&
-            (identical(other.brandLogoImagePath, brandLogoImagePath) ||
-                other.brandLogoImagePath == brandLogoImagePath));
+                other.taxIdNumber == taxIdNumber));
   }
 
   @JsonKey(ignore: true)
@@ -305,14 +305,14 @@ class _$BrandImpl implements _Brand {
       id,
       brandType,
       brandName,
+      brandMobileNumber,
+      brandEmailAddress,
+      brandDescription,
+      brandLogoImagePath,
       brandFacebookPageLink,
       brandInstagramPageLink,
       brandWebsiteLink,
-      brandMobileNumber,
-      brandEmailAddress,
-      taxIdNumber,
-      brandDescription,
-      brandLogoImagePath);
+      taxIdNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -333,14 +333,14 @@ abstract class _Brand implements Brand {
       {required final int id,
       required final String brandType,
       required final String brandName,
-      required final String? brandFacebookPageLink,
-      required final String? brandInstagramPageLink,
-      required final String? brandWebsiteLink,
       required final String brandMobileNumber,
       required final String brandEmailAddress,
-      required final String? taxIdNumber,
       required final String brandDescription,
-      required final String brandLogoImagePath}) = _$BrandImpl;
+      required final String brandLogoImagePath,
+      final String? brandFacebookPageLink,
+      final String? brandInstagramPageLink,
+      final String? brandWebsiteLink,
+      final String? taxIdNumber}) = _$BrandImpl;
 
   factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
 
@@ -351,21 +351,21 @@ abstract class _Brand implements Brand {
   @override
   String get brandName;
   @override
+  String get brandMobileNumber;
+  @override
+  String get brandEmailAddress;
+  @override
+  String get brandDescription;
+  @override
+  String get brandLogoImagePath;
+  @override
   String? get brandFacebookPageLink;
   @override
   String? get brandInstagramPageLink;
   @override
   String? get brandWebsiteLink;
   @override
-  String get brandMobileNumber;
-  @override
-  String get brandEmailAddress;
-  @override
   String? get taxIdNumber;
-  @override
-  String get brandDescription;
-  @override
-  String get brandLogoImagePath;
   @override
   @JsonKey(ignore: true)
   _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>

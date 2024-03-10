@@ -5,6 +5,9 @@ import 'package:slash_dot/slash_dot.dart';
 import './all_products_event.dart';
 import './all_products_state.dart';
 
+export './all_products_event.dart';
+export './all_products_state.dart';
+
 class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
   final int loadLimit;
   final ProductsService _productService;
@@ -16,8 +19,7 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
         super(const AllProductsInitial()) {
     on<AllProductsLoadMore>(
       _onLoadMore,
-      transformer: (events, mapper) =>
-          events.where((_) => state is! AllProductsLoading).switchMap(mapper),
+      transformer: _throttleLoadMore,
     );
   }
 
@@ -56,4 +58,13 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
       );
     }
   }
+
+  Stream<AllProductsLoadMore> _throttleLoadMore(
+    Stream<AllProductsLoadMore> events,
+    Stream<AllProductsLoadMore> Function(AllProductsLoadMore) mapper,
+  ) =>
+      events
+          .where((_) => state is! AllProductsLoading)
+          .throttleTime(const Duration(seconds: 1))
+          .switchMap(mapper);
 }

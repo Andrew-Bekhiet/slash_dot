@@ -9,14 +9,14 @@ class Brand with _$Brand {
     required int id,
     required String brandType,
     required String brandName,
-    required String? brandFacebookPageLink,
-    required String? brandInstagramPageLink,
-    required String? brandWebsiteLink,
     required String brandMobileNumber,
     required String brandEmailAddress,
-    required String? taxIdNumber,
     required String brandDescription,
     required String brandLogoImagePath,
+    String? brandFacebookPageLink,
+    String? brandInstagramPageLink,
+    String? brandWebsiteLink,
+    String? taxIdNumber,
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, Object?> json) => _$BrandFromJson(json);
