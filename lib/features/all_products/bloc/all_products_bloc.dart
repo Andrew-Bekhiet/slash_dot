@@ -2,9 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:rxdart/transformers.dart';
 import 'package:slash_dot/slash_dot.dart';
 
-import './all_products_event.dart';
-import './all_products_state.dart';
-
 export './all_products_event.dart';
 export './all_products_state.dart';
 

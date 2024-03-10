@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:slash_dot/slash_dot.dart';
 
-import 'all_products_event.dart';
-
 sealed class AllProductsState {
   const AllProductsState();
 }
