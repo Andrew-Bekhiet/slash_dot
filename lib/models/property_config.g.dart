@@ -22,5 +22,5 @@ Map<String, dynamic> _$$PropertyConfigImplToJson(
 const _$PropertyTypeEnumMap = {
   PropertyType.color: 'Color',
   PropertyType.size: 'Size',
-  PropertyType.material: 'Material',
+  PropertyType.material: 'Materials',
 };

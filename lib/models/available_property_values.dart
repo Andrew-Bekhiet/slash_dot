@@ -20,6 +20,6 @@ enum PropertyType {
   color,
   @JsonValue('Size')
   size,
-  @JsonValue('Material')
+  @JsonValue('Materials')
   material
 }
