@@ -19,27 +19,31 @@ class AllProductsList extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: NotificationListener<ScrollNotification>(
         onNotification: _onScroll,
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (MediaQuery.of(context).size.width / 200).floor(),
+              childAspectRatio: 2 / 3,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+            itemCount: products.length +
+                (isLoading
+                    ? products.length.isEven
+                        ? 2
+                        : 1
+                    : 0),
+            itemBuilder: (context, index) {
+              if (index >= products.length) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              final Product product = products[index];
+
+              return ProductWidget(product: product);
+            },
           ),
-          itemCount: products.length +
-              (isLoading
-                  ? products.length.isEven
-                      ? 2
-                      : 1
-                  : 0),
-          itemBuilder: (context, index) {
-            if (index >= products.length) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final Product product = products[index];
-
-            return ProductWidget(product: product);
-          },
         ),
       ),
     );
