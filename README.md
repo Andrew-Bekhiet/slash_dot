@@ -1,5 +1,7 @@
 # slash_dot
 
+![Wakapi total time](./wakapi-time.svg)
+
 This project is an internship task for SlashDot. The task is to recreate 2 screens of SlashDot app using Flutter.
 
 The first screen shows the list of all products. The second screen shows the details of a product.
