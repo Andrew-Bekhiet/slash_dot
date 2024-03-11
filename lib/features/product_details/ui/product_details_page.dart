@@ -78,7 +78,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                 ):
                 return SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       ProductVariationPhotos(
                         selectedVariation: selectedVariation,
@@ -145,6 +145,24 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                             title: const Text('Description'),
                             children: [Text(product.description)],
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 12,
+                        ),
+                        child: FilledButton.icon(
+                          icon: const Icon(Icons.add_shopping_cart),
+                          label: selectedVariation.inStock
+                              ? const Text('Add to cart')
+                              : const Text('Out of stock'),
+                          onPressed: selectedVariation.inStock
+                              ? () {
+                                  // TODO: Implement add to cart
+                                  // CartService.instance.addToCart(selectedVariation);
+                                }
+                              : null,
                         ),
                       ),
                     ],

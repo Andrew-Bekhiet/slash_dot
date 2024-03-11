@@ -25,6 +25,8 @@ mixin _$ProductVariation {
   double? get price => throw _privateConstructorUsedError;
   int? get productId => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
+  @JsonKey(name: 'inStock')
+  bool get inStock => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages =>
       throw _privateConstructorUsedError;
@@ -50,6 +52,7 @@ abstract class $ProductVariationCopyWith<$Res> {
       double? price,
       int? productId,
       bool isDefault,
+      @JsonKey(name: 'inStock') bool inStock,
       @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages,
       @JsonKey(name: 'productPropertiesValues')
@@ -74,6 +77,7 @@ class _$ProductVariationCopyWithImpl<$Res, $Val extends ProductVariation>
     Object? price = freezed,
     Object? productId = freezed,
     Object? isDefault = null,
+    Object? inStock = null,
     Object? productVariantImages = null,
     Object? productPropertiesValues = null,
   }) {
@@ -97,6 +101,10 @@ class _$ProductVariationCopyWithImpl<$Res, $Val extends ProductVariation>
       isDefault: null == isDefault
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inStock: null == inStock
+          ? _value.inStock
+          : inStock // ignore: cast_nullable_to_non_nullable
               as bool,
       productVariantImages: null == productVariantImages
           ? _value.productVariantImages
@@ -124,6 +132,7 @@ abstract class _$$ProductVariationImplCopyWith<$Res>
       double? price,
       int? productId,
       bool isDefault,
+      @JsonKey(name: 'inStock') bool inStock,
       @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages,
       @JsonKey(name: 'productPropertiesValues')
@@ -146,6 +155,7 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
     Object? price = freezed,
     Object? productId = freezed,
     Object? isDefault = null,
+    Object? inStock = null,
     Object? productVariantImages = null,
     Object? productPropertiesValues = null,
   }) {
@@ -170,6 +180,10 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      inStock: null == inStock
+          ? _value.inStock
+          : inStock // ignore: cast_nullable_to_non_nullable
+              as bool,
       productVariantImages: null == productVariantImages
           ? _value._productVariantImages
           : productVariantImages // ignore: cast_nullable_to_non_nullable
@@ -191,6 +205,7 @@ class _$ProductVariationImpl implements _ProductVariation {
       this.price,
       this.productId,
       this.isDefault = true,
+      @JsonKey(name: 'inStock') this.inStock = false,
       @JsonKey(name: 'ProductVarientImages')
       final List<ProductVariantImage> productVariantImages = const [],
       @JsonKey(name: 'productPropertiesValues')
@@ -212,6 +227,9 @@ class _$ProductVariationImpl implements _ProductVariation {
   @override
   @JsonKey()
   final bool isDefault;
+  @override
+  @JsonKey(name: 'inStock')
+  final bool inStock;
   final List<ProductVariantImage> _productVariantImages;
   @override
   @JsonKey(name: 'ProductVarientImages')
@@ -234,7 +252,7 @@ class _$ProductVariationImpl implements _ProductVariation {
 
   @override
   String toString() {
-    return 'ProductVariation(id: $id, quantity: $quantity, price: $price, productId: $productId, isDefault: $isDefault, productVariantImages: $productVariantImages, productPropertiesValues: $productPropertiesValues)';
+    return 'ProductVariation(id: $id, quantity: $quantity, price: $price, productId: $productId, isDefault: $isDefault, inStock: $inStock, productVariantImages: $productVariantImages, productPropertiesValues: $productPropertiesValues)';
   }
 
   @override
@@ -250,6 +268,7 @@ class _$ProductVariationImpl implements _ProductVariation {
                 other.productId == productId) &&
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
+            (identical(other.inStock, inStock) || other.inStock == inStock) &&
             const DeepCollectionEquality()
                 .equals(other._productVariantImages, _productVariantImages) &&
             const DeepCollectionEquality().equals(
@@ -265,6 +284,7 @@ class _$ProductVariationImpl implements _ProductVariation {
       price,
       productId,
       isDefault,
+      inStock,
       const DeepCollectionEquality().hash(_productVariantImages),
       const DeepCollectionEquality().hash(_productPropertiesValues));
 
@@ -290,6 +310,7 @@ abstract class _ProductVariation implements ProductVariation {
           final double? price,
           final int? productId,
           final bool isDefault,
+          @JsonKey(name: 'inStock') final bool inStock,
           @JsonKey(name: 'ProductVarientImages')
           final List<ProductVariantImage> productVariantImages,
           @JsonKey(name: 'productPropertiesValues')
@@ -309,6 +330,9 @@ abstract class _ProductVariation implements ProductVariation {
   int? get productId;
   @override
   bool get isDefault;
+  @override
+  @JsonKey(name: 'inStock')
+  bool get inStock;
   @override
   @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages;
