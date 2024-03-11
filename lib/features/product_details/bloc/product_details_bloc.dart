@@ -67,6 +67,12 @@ class ProductDetailsBloc
 
     final ProductVariation previousSelectedVariation = state.selectedVariation;
 
+    // Finds the selected variation of a product based on the given event.
+    //
+    // Search for the first variation in product variations
+    // that satisfies the currently selected property and value,
+    // as well as other previously selected variation's property.
+    // If no variation is found, it searches for the variation with the given id.
     final ProductVariation selectedVariation = state.product.variations
             .firstWhereOrNull(
           (v) => v.productPropertiesValues.every(
@@ -95,11 +101,14 @@ class ProductDetailsBloc
     );
   }
 
+  /// Filters the available properties of a product based on the selected variation.
+  /// Returns a list of [AvailablePropertyValues] objects.
   List<AvailablePropertyValues> _filterAvailableProps(
     Product product,
     ProductVariation selectedVariation,
   ) {
     return product.variations
+        // First filter for the selected variation's color
         .where(
           (v) => v.productPropertiesValues.any(
             (pv) =>
@@ -112,16 +121,22 @@ class ProductDetailsBloc
                         .value,
           ),
         )
+        // Get its properties values
         .map((v) => v.productPropertiesValues)
         .expand((e) => e)
+        // Group them by property
         .groupFoldBy<PropertyType, List<String>>(
           (pv) => pv.property,
           (g, pv) => [...g ?? [], pv.value],
         )
         .entries
         .map(
+          // Convert the grouped properties to [AvailablePropertyValues]
           (e) => AvailablePropertyValues(
             property: e.key,
+            // Get available values of each property from product
+            // then filter its values based on the selected variation's property values
+            // except for the color property, which always shows all available colors
             values: e.value
                 .map(
                   (v) => product.availableProperties
@@ -135,6 +150,7 @@ class ProductDetailsBloc
                 .toList(),
           ),
         )
+        // Sort the properties by their enum index
         .sortedByCompare(
           (p) => p.property.index,
           (a, b) => a.compareTo(b),
