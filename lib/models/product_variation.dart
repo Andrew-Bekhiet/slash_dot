@@ -8,14 +8,16 @@ part 'product_variation.g.dart';
 class ProductVariation with _$ProductVariation {
   const factory ProductVariation({
     required int id,
-    required int productId,
-    required double price,
     required int quantity,
+    double? price,
+    int? productId,
     @Default(true) bool isDefault,
     @JsonKey(name: 'ProductVarientImages')
     @Default([])
     List<ProductVariantImage> productVariantImages,
-    @Default([]) List<PropertyValue> productPropertiesValues,
+    @JsonKey(name: 'productPropertiesValues')
+    @Default([])
+    List<PropertyConfig> productPropertiesValues,
   }) = _ProductVariation;
 
   factory ProductVariation.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:slash_dot/slash_dot.dart';
 
@@ -39,7 +36,7 @@ class ProductWidget extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: BrandPhoto(product.brand),
+                    child: BrandPhoto(product.brand!),
                   ),
                 ],
               ),
@@ -57,7 +54,7 @@ class ProductWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'EGP ' + product.defaultVariation.price.toStringAsFixed(0),
+                    'EGP ' + product.defaultPrice.toStringAsFixed(0),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
@@ -87,48 +84,13 @@ class _ProductPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(50),
-      child: CachedNetworkImage(
-        imageUrl: product
-                .defaultVariation.productVariantImages.firstOrNull?.imagePath ??
+      child: SlashDotPhoto(
+        product.defaultVariation.productVariantImages.firstOrNull?.imagePath ??
             '',
-        // specifying memCacheHeight and memCacheWidth improves performance
-        memCacheHeight:
-            (ProductWidget.imageHeight * mediaQuery.devicePixelRatio * 4)
-                .round(),
-        memCacheWidth:
-            (ProductWidget.imageHeight * mediaQuery.devicePixelRatio * 4)
-                .round(),
-        imageBuilder: (context, imageProvider) => Stack(
-          fit: StackFit.expand,
-          children: [
-            ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: Image(
-                fit: BoxFit.fill,
-                image: imageProvider,
-                gaplessPlayback: true,
-              ),
-            ),
-            Image(
-              image: imageProvider,
-              gaplessPlayback: true,
-            ),
-          ],
-        ),
-        useOldImageOnUrlChange: true,
-        placeholder: (context, _) => ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: const ColoredBox(color: Colors.white),
-        ),
-        errorWidget: (context, url, error) {
-          LoggingService.instance.reportError(error, StackTrace.current);
-
-          return const _PlaceholderImage();
-        },
+        height: ProductWidget.imageHeight,
+        placeholder: const _PlaceholderImage(),
       ),
     );
   }

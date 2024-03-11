@@ -56,7 +56,7 @@ class MockProductsService extends _i1.Mock implements _i2.ProductsService {
       ) as _i3.Future<(List<_i2.Product>, bool)>);
 
   @override
-  _i3.Future<_i2.Product> getProductDetails(int? productId) =>
+  _i3.Future<_i2.Product> getProductDetails(String? productId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getProductDetails,

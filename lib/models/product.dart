@@ -12,10 +12,10 @@ class Product with _$Product {
     required String name,
     required String description,
     required int brandId,
-    @JsonKey(name: 'Brands') required Brand brand,
     required double? rating,
-    @JsonKey(name: 'ProductVariations')
+    @JsonKey(name: 'ProductVariations', readValue: _readProductVariations)
     required List<ProductVariation> variations,
+    @JsonKey(name: 'Brands') Brand? brand,
     @Default([])
     @JsonKey(name: 'avaiableProperties')
     List<AvailablePropertyValues> availableProperties,
@@ -27,4 +27,11 @@ class Product with _$Product {
 
   ProductVariation get defaultVariation =>
       variations.firstWhere((element) => element.isDefault);
+
+  double get defaultPrice =>
+      defaultVariation.price ??
+      variations.firstWhere((element) => element.price != null).price!;
 }
+
+Object? _readProductVariations(Map json, _) =>
+    json['ProductVariations'] ?? json['variations'];

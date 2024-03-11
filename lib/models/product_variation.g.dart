@@ -9,19 +9,19 @@ part of 'product_variation.dart';
 _$ProductVariationImpl _$$ProductVariationImplFromJson(Map json) =>
     _$ProductVariationImpl(
       id: json['id'] as int,
-      productId: json['product_id'] as int,
-      price: (json['price'] as num).toDouble(),
       quantity: json['quantity'] as int,
+      price: (json['price'] as num?)?.toDouble(),
+      productId: json['product_id'] as int?,
       isDefault: json['is_default'] as bool? ?? true,
       productVariantImages: (json['ProductVarientImages'] as List<dynamic>?)
               ?.map((e) => ProductVariantImage.fromJson(
                   Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [],
-      productPropertiesValues: (json['product_properties_values']
+      productPropertiesValues: (json['productPropertiesValues']
                   as List<dynamic>?)
               ?.map((e) =>
-                  PropertyValue.fromJson(Map<String, dynamic>.from(e as Map)))
+                  PropertyConfig.fromJson(Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [],
     );
@@ -30,12 +30,12 @@ Map<String, dynamic> _$$ProductVariationImplToJson(
         _$ProductVariationImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'product_id': instance.productId,
-      'price': instance.price,
       'quantity': instance.quantity,
+      'price': instance.price,
+      'product_id': instance.productId,
       'is_default': instance.isDefault,
       'ProductVarientImages':
           instance.productVariantImages.map((e) => e.toJson()).toList(),
-      'product_properties_values':
+      'productPropertiesValues':
           instance.productPropertiesValues.map((e) => e.toJson()).toList(),
     };

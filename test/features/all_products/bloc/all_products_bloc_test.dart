@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/transformers.dart';
-import 'package:slash_dot/features/all_products/bloc/all_products_bloc.dart';
 import 'package:slash_dot/slash_dot.dart';
 
 import 'all_products_bloc_test.mocks.dart';

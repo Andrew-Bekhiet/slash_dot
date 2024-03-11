@@ -21,14 +21,15 @@ ProductVariation _$ProductVariationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProductVariation {
   int get id => throw _privateConstructorUsedError;
-  int get productId => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  double? get price => throw _privateConstructorUsedError;
+  int? get productId => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages =>
       throw _privateConstructorUsedError;
-  List<PropertyValue> get productPropertiesValues =>
+  @JsonKey(name: 'productPropertiesValues')
+  List<PropertyConfig> get productPropertiesValues =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,13 +46,14 @@ abstract class $ProductVariationCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int productId,
-      double price,
       int quantity,
+      double? price,
+      int? productId,
       bool isDefault,
       @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages,
-      List<PropertyValue> productPropertiesValues});
+      @JsonKey(name: 'productPropertiesValues')
+      List<PropertyConfig> productPropertiesValues});
 }
 
 /// @nodoc
@@ -68,9 +70,9 @@ class _$ProductVariationCopyWithImpl<$Res, $Val extends ProductVariation>
   @override
   $Res call({
     Object? id = null,
-    Object? productId = null,
-    Object? price = null,
     Object? quantity = null,
+    Object? price = freezed,
+    Object? productId = freezed,
     Object? isDefault = null,
     Object? productVariantImages = null,
     Object? productPropertiesValues = null,
@@ -80,18 +82,18 @@ class _$ProductVariationCopyWithImpl<$Res, $Val extends ProductVariation>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
       isDefault: null == isDefault
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
@@ -103,7 +105,7 @@ class _$ProductVariationCopyWithImpl<$Res, $Val extends ProductVariation>
       productPropertiesValues: null == productPropertiesValues
           ? _value.productPropertiesValues
           : productPropertiesValues // ignore: cast_nullable_to_non_nullable
-              as List<PropertyValue>,
+              as List<PropertyConfig>,
     ) as $Val);
   }
 }
@@ -118,13 +120,14 @@ abstract class _$$ProductVariationImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int productId,
-      double price,
       int quantity,
+      double? price,
+      int? productId,
       bool isDefault,
       @JsonKey(name: 'ProductVarientImages')
       List<ProductVariantImage> productVariantImages,
-      List<PropertyValue> productPropertiesValues});
+      @JsonKey(name: 'productPropertiesValues')
+      List<PropertyConfig> productPropertiesValues});
 }
 
 /// @nodoc
@@ -139,9 +142,9 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? productId = null,
-    Object? price = null,
     Object? quantity = null,
+    Object? price = freezed,
+    Object? productId = freezed,
     Object? isDefault = null,
     Object? productVariantImages = null,
     Object? productPropertiesValues = null,
@@ -151,18 +154,18 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
       isDefault: null == isDefault
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
@@ -174,7 +177,7 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
       productPropertiesValues: null == productPropertiesValues
           ? _value._productPropertiesValues
           : productPropertiesValues // ignore: cast_nullable_to_non_nullable
-              as List<PropertyValue>,
+              as List<PropertyConfig>,
     ));
   }
 }
@@ -184,13 +187,14 @@ class __$$ProductVariationImplCopyWithImpl<$Res>
 class _$ProductVariationImpl implements _ProductVariation {
   const _$ProductVariationImpl(
       {required this.id,
-      required this.productId,
-      required this.price,
       required this.quantity,
+      this.price,
+      this.productId,
       this.isDefault = true,
       @JsonKey(name: 'ProductVarientImages')
       final List<ProductVariantImage> productVariantImages = const [],
-      final List<PropertyValue> productPropertiesValues = const []})
+      @JsonKey(name: 'productPropertiesValues')
+      final List<PropertyConfig> productPropertiesValues = const []})
       : _productVariantImages = productVariantImages,
         _productPropertiesValues = productPropertiesValues;
 
@@ -200,11 +204,11 @@ class _$ProductVariationImpl implements _ProductVariation {
   @override
   final int id;
   @override
-  final int productId;
-  @override
-  final double price;
-  @override
   final int quantity;
+  @override
+  final double? price;
+  @override
+  final int? productId;
   @override
   @JsonKey()
   final bool isDefault;
@@ -218,10 +222,10 @@ class _$ProductVariationImpl implements _ProductVariation {
     return EqualUnmodifiableListView(_productVariantImages);
   }
 
-  final List<PropertyValue> _productPropertiesValues;
+  final List<PropertyConfig> _productPropertiesValues;
   @override
-  @JsonKey()
-  List<PropertyValue> get productPropertiesValues {
+  @JsonKey(name: 'productPropertiesValues')
+  List<PropertyConfig> get productPropertiesValues {
     if (_productPropertiesValues is EqualUnmodifiableListView)
       return _productPropertiesValues;
     // ignore: implicit_dynamic_type
@@ -230,7 +234,7 @@ class _$ProductVariationImpl implements _ProductVariation {
 
   @override
   String toString() {
-    return 'ProductVariation(id: $id, productId: $productId, price: $price, quantity: $quantity, isDefault: $isDefault, productVariantImages: $productVariantImages, productPropertiesValues: $productPropertiesValues)';
+    return 'ProductVariation(id: $id, quantity: $quantity, price: $price, productId: $productId, isDefault: $isDefault, productVariantImages: $productVariantImages, productPropertiesValues: $productPropertiesValues)';
   }
 
   @override
@@ -239,11 +243,11 @@ class _$ProductVariationImpl implements _ProductVariation {
         (other.runtimeType == runtimeType &&
             other is _$ProductVariationImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
-            (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
             const DeepCollectionEquality()
@@ -257,9 +261,9 @@ class _$ProductVariationImpl implements _ProductVariation {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      productId,
-      price,
       quantity,
+      price,
+      productId,
       isDefault,
       const DeepCollectionEquality().hash(_productVariantImages),
       const DeepCollectionEquality().hash(_productPropertiesValues));
@@ -282,13 +286,14 @@ class _$ProductVariationImpl implements _ProductVariation {
 abstract class _ProductVariation implements ProductVariation {
   const factory _ProductVariation(
           {required final int id,
-          required final int productId,
-          required final double price,
           required final int quantity,
+          final double? price,
+          final int? productId,
           final bool isDefault,
           @JsonKey(name: 'ProductVarientImages')
           final List<ProductVariantImage> productVariantImages,
-          final List<PropertyValue> productPropertiesValues}) =
+          @JsonKey(name: 'productPropertiesValues')
+          final List<PropertyConfig> productPropertiesValues}) =
       _$ProductVariationImpl;
 
   factory _ProductVariation.fromJson(Map<String, dynamic> json) =
@@ -297,18 +302,19 @@ abstract class _ProductVariation implements ProductVariation {
   @override
   int get id;
   @override
-  int get productId;
-  @override
-  double get price;
-  @override
   int get quantity;
+  @override
+  double? get price;
+  @override
+  int? get productId;
   @override
   bool get isDefault;
   @override
   @JsonKey(name: 'ProductVarientImages')
   List<ProductVariantImage> get productVariantImages;
   @override
-  List<PropertyValue> get productPropertiesValues;
+  @JsonKey(name: 'productPropertiesValues')
+  List<PropertyConfig> get productPropertiesValues;
   @override
   @JsonKey(ignore: true)
   _$$ProductVariationImplCopyWith<_$ProductVariationImpl> get copyWith =>
