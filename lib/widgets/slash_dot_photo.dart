@@ -49,6 +49,7 @@ class SlashDotPhoto extends StatelessWidget {
           ),
         ],
       ),
+      fadeInDuration: Duration.zero,
       useOldImageOnUrlChange: true,
       placeholder: (context, _) => ConstrainedBox(
         constraints: const BoxConstraints.expand(),

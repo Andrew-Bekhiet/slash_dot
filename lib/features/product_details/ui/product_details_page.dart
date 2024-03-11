@@ -53,7 +53,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
         title: const Text('Product Details'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
           bloc: bloc,
           builder: (context, state) {
@@ -80,57 +80,71 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // ProductVariationPhotos(selectedVariation),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              product.name,
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              BrandPhoto(
-                                product.brand!,
-                                size: BrandPhotoSize.large,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                product.brand!.brandName,
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                            ],
-                          ),
-                        ],
+                      ProductVariationPhotos(
+                        selectedVariation: selectedVariation,
                       ),
-                      Text(
-                        'EGP ' +
-                            (selectedVariation.price ?? product.defaultPrice)
-                                .toStringAsFixed(0),
-                        style: Theme.of(context).textTheme.titleSmall,
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                product.name,
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                BrandPhoto(
+                                  product.brand!,
+                                  size: BrandPhotoSize.large,
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  product.brand!.brandName,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'EGP ' +
+                              (selectedVariation.price ?? product.defaultPrice)
+                                  .toStringAsFixed(0),
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
                       ),
                       const SizedBox(height: 20),
                       for (final availableProp in availableProperties)
-                        AvailablePropertySelection(
-                          selectedVariation: selectedVariation,
-                          availableProperty: availableProp,
-                          onChanged: (v) {
-                            bloc.add(
-                              ProductDetailsPropertyChanged(
-                                property: availableProp.property,
-                                value: v,
-                              ),
-                            );
-                          },
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: AvailablePropertySelection(
+                            selectedVariation: selectedVariation,
+                            availableProperty: availableProp,
+                            onChanged: (v) {
+                              bloc.add(
+                                ProductDetailsPropertyChanged(
+                                  property: availableProp.property,
+                                  value: v,
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      Card(
-                        clipBehavior: Clip.antiAlias,
-                        child: ExpansionTile(
-                          title: const Text('Description'),
-                          children: [Text(product.description)],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          child: ExpansionTile(
+                            title: const Text('Description'),
+                            children: [Text(product.description)],
+                          ),
                         ),
                       ),
                     ],
