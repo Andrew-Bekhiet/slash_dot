@@ -11,7 +11,7 @@ class AllProductsBloc extends Bloc<AllProductsEvent, AllProductsState> {
 
   AllProductsBloc({
     required ProductsService productService,
-    this.loadLimit = 500,
+    this.loadLimit = 50,
   })  : _productService = productService,
         super(const AllProductsInitial()) {
     on<AllProductsLoadMore>(
