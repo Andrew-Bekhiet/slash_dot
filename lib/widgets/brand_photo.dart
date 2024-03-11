@@ -31,6 +31,7 @@ class BrandPhoto extends StatelessWidget {
               (size.value * mediaQuery.devicePixelRatio * 4).round(),
           memCacheWidth: (size.value * mediaQuery.devicePixelRatio * 4).round(),
           useOldImageOnUrlChange: true,
+          fadeInDuration: Duration.zero,
           placeholder: (context, _) => _PlaceholderImage(size),
           errorWidget: (context, url, error) {
             LoggingService.instance.reportError(error, StackTrace.current);
