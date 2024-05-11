@@ -8,19 +8,24 @@ The first screen shows the list of all products. The second screen shows the det
 
 ## Architecture
 
-The project uses BLoC pattern with rxdart for state management, riverpod for dependency injection and freezed for data classes
+* BLoC + rxdart for state management
+* riverpod for dependency injection
+* dio for network requests and REST API
+* freezed for data classes
+* bloc_test for unit testing BLoCs
+* mockito for mocking dependencies
 
 ## Continuous Deployment
 
 The project uses GitHub Actions for continuous deployment
 
-The workflow runs tests and builds the app for Android then uploads the APK to GitHub releases
+The workflow runs tests then builds the app for Android if all tests succeed, and finally uploads the APK to GitHub releases
 
-You can download the APK from the latest release [here](https://github.com/Andrew-Bekhiet/slash_dot/releases/latest)
+You can download the APK from the [latest release](https://github.com/Andrew-Bekhiet/slash_dot/releases/latest)
 
 ## Screenshots and Video
 
-### [Video Link](screenshots/video.mp4)
+https://github.com/Andrew-Bekhiet/slash_dot/assets/40571928/3f63651e-f8ca-4ba5-a7cb-e2e1062960f8
 
 <img src="screenshots/1.png" width="350">
 <img src="screenshots/2.png" width="350">
