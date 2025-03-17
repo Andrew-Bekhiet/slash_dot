@@ -136,7 +136,7 @@ class _ColorOption extends StatelessWidget {
 
     return Material(
       type: MaterialType.circle,
-      color: Color(colorValue).withOpacity(1),
+      color: Color(colorValue).withValues(alpha: 1),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onChanged != null ? () => onChanged!(prop) : null,

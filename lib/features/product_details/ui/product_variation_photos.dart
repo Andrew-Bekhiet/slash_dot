@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:slash_dot/slash_dot.dart';
 
